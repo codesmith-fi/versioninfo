@@ -44,7 +44,6 @@ namespace codesmith {
 			bool optionExists(const CommandLineOption& option) const {
 				bool result = false;
 				for(const std::string& arg : m_args) {
-					std::cout << "matching \"" << arg << "\" with \"" << option.keyword() << "\"\n";
 					if(option.keyword().compare(arg) == 0) {
 						result = true;
 						break;
@@ -52,9 +51,29 @@ namespace codesmith {
 				}
 				return result;
 			}
+
+			const std::string getValueStr(const CommandLineOption& option) const {
+				for (auto i = 0; i < m_args.size(); ++i) {
+					if (option.keyword().compare(m_args[i]) == 0) {
+						if (i < m_args.size() - 1) {
+							return m_args[i + 1];
+						}
+					}
+				}
+				return "";
+			}
+
+			int getValueInt(const CommandLineOption& option) const {
+				std::string strValue = getValueStr(option);
+				int intValue = std::strtol(strValue.c_str(), nullptr, 10);
+				
+				return intValue;
+			}
+
 		private:
 			std::vector<std::string> m_args;
 			std::vector<CommandLineOption> m_options;
+			std::string m_value;
 		};
 	} // namespace util
 } // namespace codesmith

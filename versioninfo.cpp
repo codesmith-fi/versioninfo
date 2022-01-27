@@ -14,9 +14,17 @@ int main(int argc, char** argv)
         "Initialize version information with given details"); // init version
     codesmith::util::CommandLineOption optionHelp("-h",
         "Show this help"); // help
-
+    codesmith::util::CommandLineOption optionMajorVer("-ma",
+        "Set major version (-ma [integer])");
+    codesmith::util::CommandLineOption optionMinorVer("-mi",
+        "Set minor version (-mi [integer])");
+    codesmith::util::CommandLineOption optionBuild("-b",
+        "Set build version (-b [integer])");
     args.addOption(optionHelp);
     args.addOption(optionInit);
+    args.addOption(optionMajorVer);
+    args.addOption(optionMinorVer);
+    args.addOption(optionBuild);
 
     if (args.optionExists(optionHelp)) {
         std::cout << "VersionInfo v0.1.0 by Erno Pakarinen (codesmith.fi@gmail.com)\n";
@@ -25,6 +33,13 @@ int main(int argc, char** argv)
         return 0;
     } else if(args.optionExists(optionInit)) {
         std::cout << "Initializing version";
+        int majorver = args.getValueInt(optionMajorVer);
+        int minorver = args.getValueInt(optionMinorVer);
+        int build = args.getValueInt(optionBuild);
+
+        ver.set(majorver, minorver, build);
+
+        std::cout << " desired version: " << majorver << "." << minorver << " build " << build << std::endl;
         return 0;
     }
 
