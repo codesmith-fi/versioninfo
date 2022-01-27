@@ -27,6 +27,12 @@ namespace codesmith {
 
             virtual ~Version() { }
 
+            inline bool operator==(const Version& other) {
+                return (m_major == other.m_major &&
+                    m_minor == other.m_minor &&
+                    m_build == other.m_build);
+            }
+
             void set(uint16_t major, uint16_t minor, uint16_t build) {
                 m_major = major;
                 m_minor = minor;
