@@ -4,10 +4,19 @@
 #include <iostream>
 
 #include "version.h"
+#include "cmdline.h"
 
-int main()
+int main(int argc, char** argv)
 {
     codesmith::types::Version ver;
+    codesmith::util::CommandLineArgs args(argc, argv);
+    codesmith::util::CommandLineOption optionInit("-i"); // init version
+
+    if(args.optionExists(optionInit)) {
+        std::cout << "Initializing version";
+        return 0;
+    }
+
     ver.set(1, 0, 0);
 
     std::cout << "Version: " << ver.str() << std::endl;
