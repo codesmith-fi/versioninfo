@@ -140,7 +140,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="version.cpp" />
     <ClCompile Include="versioninfo.cpp" />
   </ItemGroup>
   <ItemGroup>

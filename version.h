@@ -1,3 +1,43 @@
+/**
+Version class
+Encapsulates data and methods to handle application version
+
+Author: Erno Pakarinen (codesmith.fi@gmail.com)
+Date: 31.01.2022
+
+Version information is stored in a binary file named as
+"version.dat" and saved in the *current* folder. Version
+is stored in big endian mode, see reversebytes32() method.
+
+Use load() and save() to retrieve and store the version info.
+Use incrementMajor() incrementMinor() incrementBuild() to 
+increment the version values. Incrementing major version will set
+minor version to 0 and build number to 1. Incrementing minor version
+will set the build number to 1.
+
+LICENSE - MIT
+Copyright(c) 2022 Erno Pakarinen(codesmith.fi@gmail.com)
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this softwareand associated documentation files(the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and /or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions :
+
+The above copyright noticeand this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT.IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ */
+
 #ifndef __VERSIONINFO_H_DEFINED__
 #define __VERSIONINFO_H_DEFINED__
 #include <iostream>
@@ -26,7 +66,13 @@ namespace codesmith {
             }
 
             virtual ~Version() { }
-
+        
+        public: // Public API
+            /**
+             * Compare 'other' version with this version, if equal the 
+             * return value is 0.
+             * 
+             */
             inline bool operator==(const Version& other) {
                 return (m_major == other.m_major &&
                     m_minor == other.m_minor &&
