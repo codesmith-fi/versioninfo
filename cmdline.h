@@ -114,9 +114,9 @@ namespace codesmith {
 			}
 
 			const std::string getValueStr(const CommandLineOption& option) const {
-				for (auto i = 0; i < m_args.size(); ++i) {
+				for (auto i = 0; i < (int)m_args.size(); ++i) {
 					if (option.keyword().compare(m_args[i]) == 0) {
-						if (i < m_args.size() - 1) {
+						if (i < ((int)m_args.size() - 1)) {
 							return m_args[i + 1];
 						}
 					}

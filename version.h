@@ -161,10 +161,10 @@ namespace codesmith {
             uint32_t reversebytes32(uint32_t num) const {
                 uint32_t result = num;
                 if(!is_big_endian()) {
-                    result = (num >> 24) & 0x000000ff |
-                        (num >> 8) & 0x0000ff00 |
-                        (num << 8) & 0x00ff0000 |
-                        (num << 24) & 0xff000000;
+                    result = ((num >> 24) & 0x000000ff) |
+                        ((num >> 8) & 0x0000ff00) |
+                        ((num << 8) & 0x00ff0000) |
+                        ((num << 24) & 0xff000000);
                 }
                 return result;
             }
